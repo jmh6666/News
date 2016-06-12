@@ -1,0 +1,18 @@
+CREATE USER 'scrat'@'localhost' IDENTIFIED BY 'scrat';
+CREATE DATABASE IF NOT EXISTS news_db DEFAULT CHARACTER SET utf8;
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,ALTER ON news_db.* TO scrat@'localhost';
+FLUSH PRIVILEGES;
+USE news_db;
+
+CREATE TABLE news (
+nid INT UNSIGNED NOT NULL AUTO_INCREMENT,
+title VARCHAR (64) NOT NULL DEFAULT '',
+author VARCHAR (32) NOT NULL DEFAULT '',
+content VARCHAR (1024) NOT NULL DEFAULT '',
+pic_url VARCHAR (128) NOT NULL DEFAULT '',
+publish_ts INT UNSIGNED NOT NULL DEFAULT 0,
+tp INT UNSIGNED NOT NULL DEFAULT 0,
+PRIMARY KEY (nid)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT IGNORE INTO news SET title = 'title1', author = 'author1', content = 'content1', pic_url = 'url1', publish_ts = '1', tp = 0;
